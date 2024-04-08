@@ -2,7 +2,8 @@ package meta
 
 import (
 	"fmt"
-	"strconv"
+
+	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/common"
 )
 
 const (
@@ -12,7 +13,7 @@ const (
 )
 
 type Meta struct {
-	Initiative int
+	Initiative common.EnhancedValue
 	Alignment  string
 	Lifestyle  string
 
@@ -26,7 +27,7 @@ var MetaKeys []string = []string{
 }
 
 func (m *Meta) ParsePrimitives() *Meta {
-	m.Initiative, _ = strconv.Atoi(*m.ParseTable__[Initiative].(*string))
+	m.Initiative = common.DecodeEnhancedValue(*m.ParseTable__[Initiative].(*string))
 	m.Alignment = *m.ParseTable__[Alignment].(*string)
 	m.Lifestyle = *m.ParseTable__[Lifestyle].(*string)
 
@@ -36,7 +37,7 @@ func (m *Meta) ParsePrimitives() *Meta {
 func (m *Meta) ToString() string {
 	var str string
 
-	str += fmt.Sprintf("\tInitiative: %d\n", m.Initiative)
+	str += fmt.Sprintf("\tInitiative: %s\n", common.EncodeEnhancedValue(m.Initiative))
 	str += fmt.Sprintf("\tAlignment: %s\n", m.Alignment)
 	str += fmt.Sprintf("\tLifestyle: %s\n", m.Lifestyle)
 

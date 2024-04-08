@@ -23,12 +23,12 @@ func Empty() *Creature {
 		Name: "",
 		Stats: &stats.Stats{
 			ParseTable__: map[string]interface{}{
-				stats.Wisdom:       utils.AsAnyPtr("0"),
-				stats.Intelligence: utils.AsAnyPtr("0"),
-				stats.Strength:     utils.AsAnyPtr("0"),
-				stats.Dexterity:    utils.AsAnyPtr("0"),
-				stats.Constitution: utils.AsAnyPtr("0"),
-				stats.Charisma:     utils.AsAnyPtr("0"),
+				stats.Wisdom:       utils.AsAnyPtr("0 (+0)"),
+				stats.Intelligence: utils.AsAnyPtr("0 (+0)"),
+				stats.Strength:     utils.AsAnyPtr("0 (+0)"),
+				stats.Dexterity:    utils.AsAnyPtr("0 (+0)"),
+				stats.Constitution: utils.AsAnyPtr("0 (+0)"),
+				stats.Charisma:     utils.AsAnyPtr("0 (+0)"),
 			},
 		},
 		Appearance: &appearance.Appearance{
@@ -48,7 +48,7 @@ func Empty() *Creature {
 		},
 		Meta: &meta.Meta{
 			ParseTable__: map[string]interface{}{
-				meta.Initiative: utils.AsAnyPtr("0"),
+				meta.Initiative: utils.AsAnyPtr("0 (+0)"),
 				meta.Alignment:  utils.AsAnyPtr(""),
 				meta.Lifestyle:  utils.AsAnyPtr(""),
 			},

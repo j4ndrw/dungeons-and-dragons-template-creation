@@ -2,7 +2,7 @@ package stats
 
 import (
 	"fmt"
-	"strconv"
+	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/common"
 )
 
 const (
@@ -24,23 +24,23 @@ var ValidStats []string = []string{
 }
 
 type Stats struct {
-	Wisdom       int
-	Intelligence int
-	Strength     int
-	Dexterity    int
-	Constitution int
-	Charisma     int
+	Wisdom       common.EnhancedValue
+	Intelligence common.EnhancedValue
+	Strength     common.EnhancedValue
+	Dexterity    common.EnhancedValue
+	Constitution common.EnhancedValue
+	Charisma     common.EnhancedValue
 
 	ParseTable__ map[string]interface{}
 }
 
 func (s *Stats) ParsePrimitives() *Stats {
-	s.Wisdom, _ = strconv.Atoi(*s.ParseTable__[Wisdom].(*string))
-	s.Intelligence, _ = strconv.Atoi(*s.ParseTable__[Intelligence].(*string))
-	s.Strength, _ = strconv.Atoi(*s.ParseTable__[Strength].(*string))
-	s.Dexterity, _ = strconv.Atoi(*s.ParseTable__[Dexterity].(*string))
-	s.Constitution, _ = strconv.Atoi(*s.ParseTable__[Constitution].(*string))
-	s.Charisma, _ = strconv.Atoi(*s.ParseTable__[Charisma].(*string))
+	s.Wisdom = common.DecodeEnhancedValue(*s.ParseTable__[Wisdom].(*string))
+	s.Intelligence = common.DecodeEnhancedValue(*s.ParseTable__[Intelligence].(*string))
+	s.Strength = common.DecodeEnhancedValue(*s.ParseTable__[Strength].(*string))
+	s.Dexterity = common.DecodeEnhancedValue(*s.ParseTable__[Dexterity].(*string))
+	s.Constitution = common.DecodeEnhancedValue(*s.ParseTable__[Constitution].(*string))
+	s.Charisma = common.DecodeEnhancedValue(*s.ParseTable__[Charisma].(*string))
 
 	return s
 }
@@ -48,12 +48,12 @@ func (s *Stats) ParsePrimitives() *Stats {
 func (s *Stats) ToString() string {
 	var str string
 
-	str += fmt.Sprintf("\tWisdom: %d\n", s.Wisdom)
-	str += fmt.Sprintf("\tIntelligence: %d\n", s.Intelligence)
-	str += fmt.Sprintf("\tStrength: %d\n", s.Strength)
-	str += fmt.Sprintf("\tDexterity: %d\n", s.Dexterity)
-	str += fmt.Sprintf("\tConstitution: %d\n", s.Constitution)
-	str += fmt.Sprintf("\tCharisma: %d\n", s.Charisma)
+	str += fmt.Sprintf("\tWisdom: %s\n", common.EncodeEnhancedValue(s.Wisdom))
+	str += fmt.Sprintf("\tIntelligence: %s\n", common.EncodeEnhancedValue(s.Intelligence))
+	str += fmt.Sprintf("\tStrength: %s\n", common.EncodeEnhancedValue(s.Strength))
+	str += fmt.Sprintf("\tDexterity: %s\n", common.EncodeEnhancedValue(s.Dexterity))
+	str += fmt.Sprintf("\tConstitution: %s\n", common.EncodeEnhancedValue(s.Constitution))
+	str += fmt.Sprintf("\tCharisma: %s\n", common.EncodeEnhancedValue(s.Charisma))
 
 	return str
 }
