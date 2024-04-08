@@ -10,7 +10,7 @@ const (
 	Aristocratic = "Aristocratic"
 )
 
-var Lifestyles []Lifestyle = []Lifestyle{
+var Lifestyles []string = []string{
 	Wretched,
 	Squalid,
 	Poor,
@@ -19,5 +19,3 @@ var Lifestyles []Lifestyle = []Lifestyle{
 	Wealthy,
 	Aristocratic,
 }
-
-type Lifestyle string

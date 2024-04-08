@@ -1,6 +1,9 @@
 package vitals
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 const (
 	HitPoints  = "HitPoints"
@@ -23,9 +26,9 @@ type Vitals struct {
 }
 
 func (v *Vitals) ParsePrimitives() *Vitals {
-	v.HitPoints = v.ParseTable__[HitPoints].(int)
-	v.ArmorClass = v.ParseTable__[ArmorClass].(int)
-	v.Speed = v.ParseTable__[Speed].(int)
+	v.HitPoints, _ = strconv.Atoi(*v.ParseTable__[HitPoints].(*string))
+	v.ArmorClass, _ = strconv.Atoi(*v.ParseTable__[ArmorClass].(*string))
+	v.Speed, _ = strconv.Atoi(*v.ParseTable__[Speed].(*string))
 
 	return v
 }
@@ -33,9 +36,9 @@ func (v *Vitals) ParsePrimitives() *Vitals {
 func (v *Vitals) ToString() string {
 	var str string
 
-	str += fmt.Sprintf("HitPoints: %d\n", v.HitPoints)
-	str += fmt.Sprintf("ArmorClass: %d\n", v.ArmorClass)
-	str += fmt.Sprintf("Speed: %d\n", v.Speed)
+	str += fmt.Sprintf("\tHitPoints: %d\n", v.HitPoints)
+	str += fmt.Sprintf("\tArmorClass: %d\n", v.ArmorClass)
+	str += fmt.Sprintf("\tSpeed: %d\n", v.Speed)
 
 	return str
 }

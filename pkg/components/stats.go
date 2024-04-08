@@ -3,20 +3,27 @@ package components
 import (
 	"github.com/charmbracelet/huh"
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/creature"
-	"github.com/j4ndrw/dungeons-and-dragons-template-creation/pkg/validators"
 )
 
-func Stats(
+func StatsInput(
 	creature *creature.Creature,
 	key string,
-	validatorFunctions ...validators.ValidatorType,
+	options ...Option,
 ) *huh.Input {
 	component := huh.NewInput().
 		Title(key).
 		Value(creature.Stats.ParseTable__[key].(*string))
 
-	for _, validatorFunction := range validatorFunctions {
-		component = component.Validate(validatorFunction)
+	for _, option := range options {
+		if option.Validator != nil {
+			component = component.Validate(*option.Validator)
+		}
+		if option.Suggestions != nil {
+			component = component.Suggestions(*option.Suggestions)
+		}
+		if option.Placeholder != nil {
+			component = component.Placeholder(*option.Placeholder)
+		}
 	}
 
 	return component

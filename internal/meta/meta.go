@@ -1,6 +1,9 @@
 package meta
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 const (
 	Initiative = "Initiative"
@@ -23,9 +26,9 @@ var MetaKeys []string = []string{
 }
 
 func (m *Meta) ParsePrimitives() *Meta {
-	m.Initiative = m.ParseTable__[Initiative].(int)
-	m.Alignment = m.ParseTable__[Alignment].(string)
-	m.Lifestyle = m.ParseTable__[Lifestyle].(string)
+	m.Initiative, _ = strconv.Atoi(*m.ParseTable__[Initiative].(*string))
+	m.Alignment = *m.ParseTable__[Alignment].(*string)
+	m.Lifestyle = *m.ParseTable__[Lifestyle].(*string)
 
 	return m
 }
@@ -33,9 +36,9 @@ func (m *Meta) ParsePrimitives() *Meta {
 func (m *Meta) ToString() string {
 	var str string
 
-	str += fmt.Sprintf("Initiative: %d\n", m.Initiative)
-	str += fmt.Sprintf("Alignment: %s\n", m.Alignment)
-	str += fmt.Sprintf("Lifestyle: %s\n", m.Lifestyle)
+	str += fmt.Sprintf("\tInitiative: %d\n", m.Initiative)
+	str += fmt.Sprintf("\tAlignment: %s\n", m.Alignment)
+	str += fmt.Sprintf("\tLifestyle: %s\n", m.Lifestyle)
 
 	return str
 }

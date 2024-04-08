@@ -1,6 +1,9 @@
 package appearance
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 const (
 	Weight = "Weight"
@@ -23,20 +26,20 @@ type Appearance struct {
 }
 
 func (a *Appearance) ParsePrimitives() *Appearance {
-	a.Weight = a.ParseTable__[Weight].(int)
-	a.Height = a.ParseTable__[Height].(int)
-	a.Skin = a.ParseTable__[Skin].(string)
-	a.Hair = a.ParseTable__[Hair].(string)
+	a.Weight, _ = strconv.Atoi(*a.ParseTable__[Weight].(*string))
+	a.Height, _ = strconv.Atoi(*a.ParseTable__[Height].(*string))
+	a.Skin = *a.ParseTable__[Skin].(*string)
+	a.Hair = *a.ParseTable__[Hair].(*string)
 
 	return a
 }
 
 func (a *Appearance) ToString() string {
 	var str string
-	str += fmt.Sprintf("Weight: %d\n", a.Weight)
-	str += fmt.Sprintf("Height: %d\n", a.Height)
-	str += fmt.Sprintf("Skin: %s\n", a.Skin)
-	str += fmt.Sprintf("Hair: %s\n", a.Hair)
+	str += fmt.Sprintf("\tWeight: %d\n", a.Weight)
+	str += fmt.Sprintf("\tHeight: %d\n", a.Height)
+	str += fmt.Sprintf("\tSkin: %s\n", a.Skin)
+	str += fmt.Sprintf("\tHair: %s\n", a.Hair)
 
 	return str
 }

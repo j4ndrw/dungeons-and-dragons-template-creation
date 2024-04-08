@@ -14,7 +14,7 @@ const (
 	ChaoticNeutral = "ChaoticNeutral"
 )
 
-var Alignments []Alignment = []Alignment{
+var Alignments []string = []string{
 	LawfulGood,
 	NeutralGood,
 	ChaoticGood,
@@ -27,5 +27,3 @@ var Alignments []Alignment = []Alignment{
 	TrueNeutral,
 	ChaoticNeutral,
 }
-
-type Alignment string

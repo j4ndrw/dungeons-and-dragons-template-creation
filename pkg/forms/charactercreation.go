@@ -2,8 +2,10 @@ package forms
 
 import (
 	"github.com/charmbracelet/huh"
+	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/alignment"
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/appearance"
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/creature"
+	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/lifestyle"
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/meta"
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/stats"
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/vitals"
@@ -12,6 +14,8 @@ import (
 )
 
 func CharacterCreation(creature *creature.Creature) *huh.Form {
+	modifierPlaceholder := "Format: <number> (+<modifier>) or <number>(-<modifier>). E.g. 14 (+3)"
+
 	nameGroup := huh.
 		NewGroup(
 			huh.
@@ -23,35 +27,96 @@ func CharacterCreation(creature *creature.Creature) *huh.Form {
 
 	appearanceGroup := huh.
 		NewGroup(
-			components.Appearance(creature, appearance.Weight, validators.CheckNumeric),
-			components.Appearance(creature, appearance.Height, validators.CheckNumeric),
-			components.Appearance(creature, appearance.Skin),
-			components.Appearance(creature, appearance.Hair),
+			components.AppearanceInput(
+				creature,
+				appearance.Weight,
+				components.WithValidator(validators.CheckNumeric),
+			),
+			components.AppearanceInput(
+				creature,
+				appearance.Height,
+				components.WithValidator(validators.CheckNumeric),
+			),
+			components.AppearanceInput(
+				creature,
+				appearance.Skin,
+			),
+			components.AppearanceInput(
+				creature,
+				appearance.Hair,
+			),
 		).
 		Title("Describe this creature.")
 
 	statsGroup := huh.
 		NewGroup(
-			components.Stats(creature, stats.Wisdom, validators.CheckNumeric),
-			components.Stats(creature, stats.Strength, validators.CheckNumeric),
-			components.Stats(creature, stats.Dexterity, validators.CheckNumeric),
-			components.Stats(creature, stats.Constitution, validators.CheckNumeric),
-			components.Stats(creature, stats.Intelligence, validators.CheckNumeric),
-			components.Stats(creature, stats.Charisma, validators.CheckNumeric),
+			components.StatsInput(
+				creature,
+				stats.Wisdom,
+				components.WithValidator(validators.CheckNumericWithModifier),
+				components.WithPlaceholder(modifierPlaceholder),
+			),
+			components.StatsInput(
+				creature,
+				stats.Strength,
+				components.WithValidator(validators.CheckNumericWithModifier),
+				components.WithPlaceholder(modifierPlaceholder),
+			),
+			components.StatsInput(
+				creature,
+				stats.Dexterity,
+				components.WithValidator(validators.CheckNumericWithModifier),
+				components.WithPlaceholder(modifierPlaceholder),
+			),
+			components.StatsInput(
+				creature,
+				stats.Constitution,
+				components.WithValidator(validators.CheckNumericWithModifier),
+				components.WithPlaceholder(modifierPlaceholder),
+			),
+			components.StatsInput(
+				creature,
+				stats.Intelligence,
+				components.WithValidator(validators.CheckNumericWithModifier),
+				components.WithPlaceholder(modifierPlaceholder),
+			),
+			components.StatsInput(
+				creature,
+				stats.Charisma,
+				components.WithValidator(validators.CheckNumericWithModifier),
+				components.WithPlaceholder(modifierPlaceholder),
+			),
 		).Title("What are the stats of this creature?")
 
 	metaGroup := huh.
 		NewGroup(
-			components.Meta(creature, meta.Initiative, validators.CheckNumeric),
-			components.Meta(creature, meta.Lifestyle),
-			components.Meta(creature, meta.Alignment),
+			components.MetaInput(
+				creature,
+				meta.Initiative,
+				components.WithValidator(validators.CheckNumericWithModifier),
+				components.WithPlaceholder(modifierPlaceholder),
+			),
+			components.MetaSelect(creature, meta.Lifestyle, lifestyle.Lifestyles),
+			components.MetaSelect(creature, meta.Alignment, alignment.Alignments),
 		).Title("What is this creature's meta?")
 
 	vitalsGroup := huh.
 		NewGroup(
-			components.Vitals(creature, vitals.HitPoints, validators.CheckNumeric),
-			components.Vitals(creature, vitals.ArmorClass, validators.CheckNumeric),
-			components.Vitals(creature, vitals.Speed, validators.CheckNumeric),
+			components.VitalsInput(
+				creature,
+				vitals.HitPoints,
+				components.WithValidator(validators.CheckNumeric),
+			),
+			components.VitalsInput(
+				creature,
+				vitals.ArmorClass,
+				components.WithValidator(validators.CheckNumeric),
+			),
+			components.VitalsInput(
+				creature,
+				vitals.Speed,
+				components.WithValidator(validators.CheckNumeric),
+			),
 		)
 
 	return New(

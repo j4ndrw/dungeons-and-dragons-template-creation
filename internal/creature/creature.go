@@ -85,10 +85,10 @@ func (c *Creature) ToString() string {
 	var str string
 
 	str += fmt.Sprintf("Name: %s\n", c.Name)
-	str += fmt.Sprintf("Stats:\n\t%s", c.Stats.ToString())
-	str += fmt.Sprintf("Meta:\n\t%s", c.Meta.ToString())
-	str += fmt.Sprintf("Vitals:\n\t%s", c.Vitals.ToString())
-	str += fmt.Sprintf("Appearance:\n\t%s", c.Appearance.ToString())
+	str += fmt.Sprintf("Stats:\n%s", c.Stats.ToString())
+	str += fmt.Sprintf("Meta:\n%s", c.Meta.ToString())
+	str += fmt.Sprintf("Vitals:\n%s", c.Vitals.ToString())
+	str += fmt.Sprintf("Appearance:\n%s", c.Appearance.ToString())
 
 	return str
 }
