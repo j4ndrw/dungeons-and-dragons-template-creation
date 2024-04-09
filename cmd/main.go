@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"strconv"
 
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/creature"
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/pkg/forms"
@@ -12,10 +13,13 @@ import (
 func main() {
 	utils.ClearScreen()
 
-	var numberOfPlayers string
-	numberOfPlayersForm := forms.NumberOfPlayers(&numberOfPlayers)
-
+	var numberOfPlayersShell string
+	numberOfPlayersForm := forms.NumberOfPlayers(&numberOfPlayersShell)
 	err := numberOfPlayersForm.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
+	numberOfPlayers, err := strconv.Atoi(numberOfPlayersShell)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -23,7 +27,7 @@ func main() {
 	fmt.Println("You have", numberOfPlayers, "players at the table.")
 
 	var creatures []*creature.Creature
-	for range numberOfPlayers {
+	for i := 0; i < numberOfPlayers; i++ {
 		creature := creature.Empty()
 		characterCreationForm := forms.CharacterCreation(creature)
 		err := characterCreationForm.Run()
