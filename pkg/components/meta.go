@@ -5,24 +5,21 @@ import (
 	"github.com/j4ndrw/dungeons-and-dragons-template-creation/internal/creature"
 )
 
-func MetaInput(
+func MetaConfirm(
 	creature *creature.Creature,
 	key string,
 	options ...Option,
-) *huh.Input {
-	component := huh.NewInput().
+) *huh.Confirm {
+	component := huh.NewConfirm().
 		Title(key).
-		Value(creature.Meta.ParseTable__[key].(*string))
+		Value(creature.Meta.ParseTable__[key].(*bool))
 
 	for _, option := range options {
-		if option.Validator != nil {
-			component = component.Validate(*option.Validator)
+		if option.Affirmative != nil {
+			component = component.Affirmative(*option.Affirmative)
 		}
-		if option.Suggestions != nil {
-			component = component.Suggestions(*option.Suggestions)
-		}
-		if option.Placeholder != nil {
-			component = component.Placeholder(*option.Placeholder)
+		if option.Negative != nil {
+			component = component.Negative(*option.Negative)
 		}
 	}
 

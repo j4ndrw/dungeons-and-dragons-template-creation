@@ -12,11 +12,11 @@ func NumberOfPlayers() (*int, error) {
 	numberOfPlayersForm := forms.NumberOfPlayers(&numberOfPlayersShell)
 	err := numberOfPlayersForm.Run()
 	if err != nil {
-	  return nil, err
+		return nil, err
 	}
 	numberOfPlayers, err := strconv.Atoi(numberOfPlayersShell)
 	if err != nil {
-	  return nil, err
+		return nil, err
 	}
 	return &numberOfPlayers, nil
 }
@@ -28,7 +28,7 @@ func CharacterCreation(numberOfPlayers int) ([]*creature.Creature, error) {
 		characterCreationForm := forms.CharacterCreation(creature)
 		err := characterCreationForm.Run()
 		if err != nil {
-		  return nil, err
+			return nil, err
 		}
 		creature = creature.Build()
 		creatures = append(creatures, creature)

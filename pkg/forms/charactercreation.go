@@ -90,11 +90,11 @@ func CharacterCreation(creature *creature.Creature) *huh.Form {
 
 	metaGroup := huh.
 		NewGroup(
-			components.MetaInput(
+			components.MetaConfirm(
 				creature,
 				meta.Initiative,
-				components.WithValidator(validators.CheckNumericWithModifier),
-				components.WithPlaceholder(modifierPlaceholder),
+				components.WithAffirmative("+1"),
+				components.WithNegative("-1"),
 			),
 			components.MetaSelect(creature, meta.Lifestyle, lifestyle.Lifestyles),
 			components.MetaSelect(creature, meta.Alignment, alignment.Alignments),

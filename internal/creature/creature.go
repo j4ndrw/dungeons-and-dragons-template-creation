@@ -23,34 +23,34 @@ func Empty() *Creature {
 		Name: "",
 		Stats: &stats.Stats{
 			ParseTable__: map[string]interface{}{
-				stats.Wisdom:       utils.AsAnyPtr("0 (+0)"),
-				stats.Intelligence: utils.AsAnyPtr("0 (+0)"),
-				stats.Strength:     utils.AsAnyPtr("0 (+0)"),
-				stats.Dexterity:    utils.AsAnyPtr("0 (+0)"),
-				stats.Constitution: utils.AsAnyPtr("0 (+0)"),
-				stats.Charisma:     utils.AsAnyPtr("0 (+0)"),
+				stats.Wisdom:       utils.AsPtr(""),
+				stats.Intelligence: utils.AsPtr(""),
+				stats.Strength:     utils.AsPtr(""),
+				stats.Dexterity:    utils.AsPtr(""),
+				stats.Constitution: utils.AsPtr(""),
+				stats.Charisma:     utils.AsPtr(""),
 			},
 		},
 		Appearance: &appearance.Appearance{
 			ParseTable__: map[string]interface{}{
-				appearance.Height: utils.AsAnyPtr("0"),
-				appearance.Weight: utils.AsAnyPtr("0"),
-				appearance.Skin:   utils.AsAnyPtr(""),
-				appearance.Hair:   utils.AsAnyPtr(""),
+				appearance.Height: utils.AsPtr(""),
+				appearance.Weight: utils.AsPtr(""),
+				appearance.Skin:   utils.AsPtr(""),
+				appearance.Hair:   utils.AsPtr(""),
 			},
 		},
 		Vitals: &vitals.Vitals{
 			ParseTable__: map[string]interface{}{
-				vitals.HitPoints:  utils.AsAnyPtr("0"),
-				vitals.ArmorClass: utils.AsAnyPtr("0"),
-				vitals.Speed:      utils.AsAnyPtr("0"),
+				vitals.HitPoints:  utils.AsPtr(""),
+				vitals.ArmorClass: utils.AsPtr(""),
+				vitals.Speed:      utils.AsPtr(""),
 			},
 		},
 		Meta: &meta.Meta{
 			ParseTable__: map[string]interface{}{
-				meta.Initiative: utils.AsAnyPtr("0 (+0)"),
-				meta.Alignment:  utils.AsAnyPtr(""),
-				meta.Lifestyle:  utils.AsAnyPtr(""),
+				meta.Initiative: utils.AsPtr(true),
+				meta.Alignment:  utils.AsPtr(""),
+				meta.Lifestyle:  utils.AsPtr(""),
 			},
 		},
 	}

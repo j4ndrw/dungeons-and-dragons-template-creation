@@ -15,7 +15,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("You have", numberOfPlayers, "players at the table.")
+	fmt.Println("You have", *numberOfPlayers, "players at the table.")
 
 	creatures, err := formrunners.CharacterCreation(*numberOfPlayers)
 	if err != nil {

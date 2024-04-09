@@ -16,4 +16,4 @@ func MapSlice[TIn, TOut any](in []TIn, mapper func(TIn) TOut) []TOut {
 	return out
 }
 
-func AsAnyPtr[T any](x T) interface{} { return &x }
+func AsPtr[T any](x T) interface{} { return &x }
